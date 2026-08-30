@@ -2084,26 +2084,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     var installBtn = document.getElementById("installBtn");
     var deferredPrompt = null;
+    var isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
     window.addEventListener("beforeinstallprompt", function (e) {
         e.preventDefault();
         deferredPrompt = e;
-        installBtn.classList.add("show");
+        if (!isStandalone) installBtn.classList.add("show"); // only shows when a real one-tap install is ready
     });
     installBtn.onclick = function () {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(function () {
-                deferredPrompt = null;
-                installBtn.classList.remove("show");
-            });
-        } else {
-            alert("لتثبيت التطبيق:\n\n• على أندرويد (Chrome): القائمة ⋮ ← \"تثبيت التطبيق\" / \"إضافة إلى الشاشة الرئيسية\".\n• على آيفون (Safari): زر المشاركة ⬆️ ← \"إضافة إلى الشاشة الرئيسية\".");
-        }
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function () {
+            deferredPrompt = null;
+            installBtn.classList.remove("show");
+        });
     };
     window.addEventListener("appinstalled", function () { installBtn.classList.remove("show"); });
-    // Show manual-install hint if not already installed as standalone
-    var isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
-    if (!isStandalone) setTimeout(function () { installBtn.classList.add("show"); }, 800);
 
     /* ========================= INIT ========================== */
     updateStreak();

@@ -1,5 +1,5 @@
 /* FOCUS service worker - offline support (all assets are local, no internet needed) */
-var CACHE = "focus-cache-v7";
+var CACHE = "focus-cache-v8";
 
 var ASSETS = [
   "./",
