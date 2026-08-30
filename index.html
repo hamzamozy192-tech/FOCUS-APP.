@@ -9,8 +9,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="FOCUS">
-    <link rel="icon" href="icons/icon-32.png">
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="icon" href="icon-32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <title>FOCUS - تطبيق التركيز والمذاكرة</title>
     <style>
         *, *::before, *::after {
@@ -627,25 +627,25 @@
 
 <!-- INTRO -->
 <div id="intro">
-    <img src="assets/img/intro.png" alt="FOCUS">
+    <img src="intro.png" alt="FOCUS">
     <div id="introTapHint">🔊 اضغط في أي مكان لتفعيل الصوت</div>
 </div>
 
 <!-- Hidden intro music (aesthetic only, not part of the ambient focus sounds) -->
 <audio id="introAudio" preload="auto">
-    <source src="assets/audio/focus.mp3" type="audio/mpeg">
+    <source src="focus.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Hidden alarm audio (end of session / lesson reminder) -->
 <audio id="alarmAudio" preload="auto" loop>
-    <source src="assets/audio/alarm.mp3" type="audio/mpeg">
+    <source src="alarm.mp3" type="audio/mpeg">
 </audio>
 
 <main id="app">
 
     <header class="header">
         <div class="brand">
-            <img src="assets/img/logo.png" alt="FOCUS Logo">
+            <img src="logo.png" alt="FOCUS Logo">
             <div class="brand-text"><h1>FOCUS</h1></div>
         </div>
         <div class="header-actions">
@@ -925,17 +925,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ========================= AUDIO SOURCES ========================== */
     var SOUND_FILES = {
-        rain:     "assets/audio/rain.mp3",
-        wind:     "assets/audio/wind.mp3",
-        storm:    "assets/audio/storm.mp3",
-        keyboard: "assets/audio/keyboard.mp3",
-        penl:     "assets/audio/pen.mp3",
-        book:     "assets/audio/book.mp3",
-        ocean:    "assets/audio/ocean.mp3",
-        night:    "assets/audio/night.mp3",
-        fire:     "assets/audio/fire.mp3",
-        cafe:     "assets/audio/cafe.mp3",
-        chimes:   "assets/audio/chimes.mp3"
+        rain:     "rain.mp3",
+        wind:     "wind.mp3",
+        storm:    "storm.mp3",
+        keyboard: "keyboard.mp3",
+        penl:     "pen.mp3",
+        book:     "book.mp3",
+        ocean:    "ocean.mp3",
+        night:    "night.mp3",
+        fire:     "fire.mp3",
+        cafe:     "cafe.mp3",
+        chimes:   "chimes.mp3"
     };
     /* NOTE: focus.mp3 is intentionally NOT listed here — it is reserved for the
        intro screen only and must never appear as a selectable ambient sound. */
@@ -1065,7 +1065,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: meta ? (meta.emoji + " " + meta.name) : "FOCUS",
                 artist: "FOCUS — أصوات التركيز",
                 album: "جلسة مذاكرة",
-                artwork: [{ src: "icons/icon-512.png", sizes: "512x512", type: "image/png" }]
+                artwork: [{ src: "icon-512.png", sizes: "512x512", type: "image/png" }]
             });
             navigator.mediaSession.playbackState = "playing";
         } catch (e) {}
@@ -1473,7 +1473,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     body: lockBreachPending.penalized
                         ? "خرجت من وضع التركيز الكامل — تم خصم 20 نقطة تلقائيًا."
                         : "تم إنهاء جلسة التركيز الكامل لأنك غادرت التطبيق.",
-                    icon: "icons/icon-192.png"
+                    icon: "icon-192.png"
                 });
             } catch (e) {}
         }
@@ -1699,7 +1699,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ? "حان الآن موعد درس: " + c.title
                     : "درس \"" + c.title + "\" هيبدأ بعد " + leadTime + " دقيقة ⏰";
                 if (("Notification" in window) && Notification.permission === "granted") {
-                    new Notification("FOCUS - تذكير 📚", { body: body, icon: "icons/icon-192.png" });
+                    new Notification("FOCUS - تذكير 📚", { body: body, icon: "icon-192.png" });
                 }
                 showToast(body, leadTime === 0 ? "danger" : "info", 6000);
                 if (leadTime === 0) { playAlarm(); setTimeout(stopAlarm, 8000); }
@@ -2070,7 +2070,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (("Notification" in window) && Notification.permission === "granted") {
                     new Notification("FOCUS - اقترب موعد الدرس ⏰", {
                         body: "الدرس \"" + nx.course.title + "\" بعد " + mark + " دقيقة",
-                        icon: "icons/icon-192.png"
+                        icon: "icon-192.png"
                     });
                 }
                 if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
